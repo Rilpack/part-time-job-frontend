@@ -12,7 +12,7 @@ import {
   View,
   Text,
 } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -23,7 +23,12 @@ function App() {
         barStyle={isDarkMode ? 'dark-content' : 'light-content'}
         backgroundColor={'#fff'}
       />
-      <AppContent />
+      <SafeAreaView
+        style={styles.container}
+        edges={['top', 'left', 'right', 'bottom']}
+      >
+        <AppContent />
+      </SafeAreaView>
     </SafeAreaProvider>
   );
 }
@@ -31,15 +36,23 @@ function App() {
 function AppContent() {
   return (
     <View style={styles.container}>
-      <Text style={{ padding: 4, fontSize: 24, lineHeight: 22 }}>Test</Text>
+      <Text
+        style={{
+          padding: 4,
+          fontSize: 24,
+          lineHeight: 22,
+        }}
+      >
+        Test
+      </Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
+    flex: 1,
   },
 });
 
