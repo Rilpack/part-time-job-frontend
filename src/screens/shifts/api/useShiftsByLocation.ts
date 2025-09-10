@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ICoordinates } from '../../../entities/shift/model/types';
+import { ICoordinates } from '../../../entities/shifts/model/types';
 import { fetchByLocation } from './fetchByLocation';
 
 export const useShiftsByLocation = () => {
