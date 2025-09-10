@@ -10,11 +10,10 @@ import {
   type Permission,
   type PermissionStatus,
 } from 'react-native-permissions';
-
-type Status = 'checking' | 'granted' | 'denied' | 'blocked' | 'unavailable';
+import { TypeStatus } from '../model';
 
 export const useLocationPermission = () => {
-  const [status, setStatus] = useState<Status>('checking');
+  const [status, setStatus] = useState<TypeStatus>('checking');
 
   const FINE: Permission =
     Platform.OS === 'ios' ? PERMISSIONS.IOS.LOCATION_WHEN_IN_USE : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
@@ -25,7 +24,7 @@ export const useLocationPermission = () => {
     useCallback(() => {
       let alive = true;
 
-      const setCurrentStatus = (status: Status) => {
+      const setCurrentStatus = (status: TypeStatus) => {
         if (alive) setStatus(status);
       };
 
