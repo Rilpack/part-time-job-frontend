@@ -1,5 +1,6 @@
+import { IShift } from '@/entities/shifts/model/types';
+
 export type RootStackParamList = {
-  // TODO: Добавить интерфейс, приходящих смен с запроса
-  ShiftsList: any;
-  ShiftDetails: any;
+  ShiftsList: undefined;
+  ShiftDetails: { shift: IShift };
 };

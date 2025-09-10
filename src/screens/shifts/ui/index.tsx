@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useLocationPermission } from '@/features/permission-location/api/useLocationPermission';
 import { useCurrentLocation } from '@/features/current-location/api/useCurrentLocation';
