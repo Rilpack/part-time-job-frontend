@@ -2,7 +2,7 @@ import React from 'react';
 import type { RootStackParamList } from './types';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { ShiftsListScreen } from '@/screens/shifts/ui';
-import { ShiftDetailsScreen } from '@/screens/shift-details/api';
+import { ShiftDetailsScreen } from '@/screens/shift-details/ui';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

@@ -1,9 +1,14 @@
+import { ShiftDetailsRoute } from '@/app/navigation/types';
+import { useRoute } from '@react-navigation/native';
 import { View, StyleSheet, Text } from 'react-native';
 
 export const ShiftDetailsScreen = () => {
+  const route = useRoute<ShiftDetailsRoute>();
+  const { shift } = route.params;
+
   return (
     <View style={s.wrap}>
-      <Text>Смена</Text>
+      <Text>{String(shift)}</Text>
     </View>
   );
 };
