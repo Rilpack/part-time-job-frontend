@@ -5,7 +5,7 @@ export const CoordinatesBlock = (coordinations?: ICoordinates | null) => {
   return (
     <View style={s.wrap}>
       <Text style={s.title}>
-        Полученные координаты:{' '}
+        Текущие координаты:{' '}
         <Text style={s.sub}>
           {coordinations?.latitude}, {coordinations?.longitude}
         </Text>
