@@ -4,7 +4,7 @@ import { ShiftsList } from '@/features/shifts/ui/ShiftList';
 import { useNavigation } from '@react-navigation/native';
 import { IShiftsWidget } from '../model';
 
-export const ShiftsWidget: FC<IShiftsWidget> = ({ shifts, status, openSettings }: IShiftsWidget) => {
+export const ShiftsWidget: FC<IShiftsWidget> = ({ isLoadingShifts, shifts, status, openSettings }: IShiftsWidget) => {
   const navigation = useNavigation();
 
   if (status === 'checking') {
@@ -26,6 +26,7 @@ export const ShiftsWidget: FC<IShiftsWidget> = ({ shifts, status, openSettings }
       <View style={s.wrap}>
         <Text style={s.title}>Геолокация недоступна</Text>
         <Text style={s.sub}>Проверьте настройки устройства.</Text>
+        <Button title="Открыть настройки" onPress={() => openSettings('application')} />
       </View>
     );
   }
@@ -33,7 +34,11 @@ export const ShiftsWidget: FC<IShiftsWidget> = ({ shifts, status, openSettings }
   return (
     <View style={s.wrap}>
       <Text style={s.title}>Список смен</Text>
-      <ShiftsList shifts={shifts} onClick={() => navigation.navigate('ShiftDetails')} />
+      {isLoadingShifts ? (
+        <ActivityIndicator style={{ marginTop: 24 }} />
+      ) : (
+        <ShiftsList shifts={shifts} onClick={() => navigation.navigate('ShiftDetails')} />
+      )}
     </View>
   );
 };
