@@ -1,11 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import Geolocation from 'react-native-geolocation-service';
-
-interface ICoordinations {
-  lat: number;
-  lon: number;
-  accuracy?: number;
-}
+import { ICoordinations } from '../model';
 
 export function useCurrentLocation(runOnMount = true) {
   const [coordinations, setCoordinations] = useState<ICoordinations | null>(null);

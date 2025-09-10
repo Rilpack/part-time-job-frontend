@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { ActivityIndicator, Button, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useLocationPermission } from '@/features/location/model/useLocationPermission';
+import { useLocationPermission } from '@/features/permission-location/api/useLocationPermission';
 import { useNavigation } from '@react-navigation/native';
-import { useCurrentLocation } from '@/features/location/model/useCurrentLocation';
+import { useCurrentLocation } from '@/features/current-location/api/useCurrentLocation';
 
 export const ShiftsListScreen = () => {
   const navigation = useNavigation();
