@@ -3,9 +3,11 @@ import { FlatList, TouchableOpacity } from 'react-native';
 import { ShiftCard } from '@/entities/shifts/ui/ShiftCard';
 import { IShiftsListProps } from '../model';
 import { useNavigation } from '@react-navigation/native';
+import { NavigationShiftsList } from '@/app/navigation/types';
 
 export const ShiftsList: FC<IShiftsListProps> = ({ shifts }: IShiftsListProps) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationShiftsList>();
+
   return (
     <FlatList
       data={shifts}
@@ -15,7 +17,7 @@ export const ShiftsList: FC<IShiftsListProps> = ({ shifts }: IShiftsListProps) =
         <TouchableOpacity
           style={{ marginBottom: 12 }}
           activeOpacity={1}
-          onPress={() => navigation.navigate('ShiftList', { shift: item.item })}
+          onPress={() => navigation.navigate('ShiftDetails', { shift: item.item })}
         >
           <ShiftCard shift={item.item} />
         </TouchableOpacity>
