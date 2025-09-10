@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { ICoordinates } from '../../../entities/shifts/model/types';
+import { ICoordinates, IShift } from '../../../entities/shifts/model/types';
 import { fetchByLocation } from './fetchByLocation';
 
 export const useShiftsByLocation = () => {
+  const [data, setData] = useState<IShift[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<string | null>(null);
 
@@ -12,7 +13,7 @@ export const useShiftsByLocation = () => {
 
     fetchByLocation({ latitude: latitude, longitude: longitude })
       .then((data) => {
-        console.log(data);
+        setData(data);
       })
       .catch((error) => {
         setIsError(error?.message || 'Не удалось загрузить список смен');
@@ -23,5 +24,5 @@ export const useShiftsByLocation = () => {
       });
   };
 
-  return { getShifts, isLoadingShifts: isLoading, isErrorShifts: isError };
+  return { shifts: data, getShifts, isLoadingShifts: isLoading, isErrorShifts: isError };
 };

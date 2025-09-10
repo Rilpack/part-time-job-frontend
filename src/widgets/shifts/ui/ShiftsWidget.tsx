@@ -2,10 +2,9 @@ import { FC } from 'react';
 import { ActivityIndicator, View, Text, Button, StyleSheet } from 'react-native';
 import { ShiftsList } from '@/features/shifts/ui/ShiftList';
 import { useNavigation } from '@react-navigation/native';
-import { shiftsTest } from '@/shared/constants/shiftsTest';
 import { IShiftsWidget } from '../model';
 
-export const ShiftsWidget: FC<IShiftsWidget> = ({ status, openSettings }: IShiftsWidget) => {
+export const ShiftsWidget: FC<IShiftsWidget> = ({ shifts, status, openSettings }: IShiftsWidget) => {
   const navigation = useNavigation();
 
   if (status === 'checking') {
@@ -34,7 +33,7 @@ export const ShiftsWidget: FC<IShiftsWidget> = ({ status, openSettings }: IShift
   return (
     <View style={s.wrap}>
       <Text style={s.title}>Список смен</Text>
-      <ShiftsList shifts={shiftsTest} onClick={() => navigation.navigate('ShiftDetails')} />
+      <ShiftsList shifts={shifts} onClick={() => navigation.navigate('ShiftDetails')} />
     </View>
   );
 };

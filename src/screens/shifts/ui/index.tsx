@@ -3,14 +3,22 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useLocationPermission } from '@/features/permission-location/api/useLocationPermission';
 import { useCurrentLocation } from '@/features/current-location/api/useCurrentLocation';
 import { ShiftsWidget } from '@/widgets/shifts/ui/ShiftsWidget';
+import { useShiftsByLocation } from '../api/useShiftsByLocation';
 
 export const ShiftsListScreen = () => {
   const { status, openAppSettings } = useLocationPermission();
   const { coordinations, refresh, isLoading } = useCurrentLocation();
+  const { shifts, getShifts } = useShiftsByLocation();
 
   useEffect(() => {
     refresh();
   }, [status]);
+
+  useEffect(() => {
+    if (coordinations) {
+      getShifts({ latitude: coordinations.lat, longitude: coordinations.lon });
+    }
+  }, [coordinations]);
 
   return (
     <View style={s.wrap}>
@@ -20,7 +28,7 @@ export const ShiftsListScreen = () => {
           {coordinations?.lat}, {coordinations?.lon}
         </Text>
       </Text>
-      <ShiftsWidget status={status} openSettings={openAppSettings} />
+      <ShiftsWidget shifts={shifts || []} status={status} openSettings={openAppSettings} />
     </View>
   );
 };
