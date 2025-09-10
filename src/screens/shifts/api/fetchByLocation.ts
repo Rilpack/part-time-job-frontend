@@ -1,4 +1,4 @@
-import { api } from '@/shared/api';
+import { api } from '@/app/api';
 import { ICoordinates, IShift } from '../../../entities/shifts/model/types';
 
 export async function fetchByLocation({ latitude, longitude }: ICoordinates): Promise<IShift[]> {
